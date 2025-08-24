@@ -5,7 +5,7 @@ type CardProps = {
 
 function Card({ image, name }: CardProps) {
   return (
-    <div className="card bg-base-100 w-96 shadow-sm">
+    <div className="card w-full bg-base-100 shadow-sm">
       <figure className="px-10 pt-10">
         <img src={image} alt={image} className="rounded-xl" />
       </figure>

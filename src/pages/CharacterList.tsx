@@ -1,28 +1,22 @@
-import { useEffect, useState } from "react";
 import Card from "../component/card/Card";
-
-type Characters = {
-  id: number;
-  image: string;
-  name: string;
-};
+import { useGetApi } from "../hooks/useGetApi";
 
 function CharacterList() {
-  const [getCharacters, setgetCharacters] = useState<Characters[] | null>(null);
-  useEffect(() => {
-    fetch(`https://rickandmortyapi.com/api/character`)
-      .then((data) => data.json())
-      .then((res) => {
-        setgetCharacters(res.results);
-      });
-  }, []);
+  const { getCharacters } = useGetApi();
   return (
-    <>
+    <div
+      className="grid gap-8 
+    grid-cols-1 
+    sm:grid-cols-2 
+    md:grid-cols-3 
+    lg:grid-cols-3 
+    xl:grid-cols-3"
+    >
       {getCharacters &&
         getCharacters.map(({ id, image, name }) => (
           <Card image={image} name={name} key={id} />
         ))}
-    </>
+    </div>
   );
 }
 
