@@ -1,9 +1,27 @@
+import { Heart } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import type { Character } from "../../types/character";
+
 type CardProps = {
+  id: number;
   image: string;
   name: string;
+  isFav: boolean;
+  toggleFav: (character: Character) => void;
+  character: Character;
 };
 
-function Card({ image, name }: CardProps) {
+function Card({ id, image, name, isFav, toggleFav, character }: CardProps) {
+  const navigate = useNavigate();
+
+  function handleExplore() {
+    navigate(`/items/${id}`);
+  }
+
+  function handleToggle(e: React.MouseEvent) {
+    e.stopPropagation();
+    toggleFav(character);
+  }
   return (
     <div className="card w-full bg-base-100 shadow-sm">
       <figure className="px-10 pt-10">
@@ -16,7 +34,18 @@ function Card({ image, name }: CardProps) {
           title and actions parts
         </p>
         <div className="card-actions">
-          <button className="btn btn-primary">Explore</button>
+          <button className="btn btn-primary" onClick={handleExplore}>
+            Explore
+          </button>
+          <button className="btn" onClick={handleToggle}>
+            <Heart
+              className={
+                isFav
+                  ? "fill-red-500 text-shadow-red-500"
+                  : "fill-white text-shadow-gray-400"
+              }
+            />
+          </button>
         </div>
       </div>
     </div>
