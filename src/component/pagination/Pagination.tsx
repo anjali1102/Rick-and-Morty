@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 
 interface PaginationProps {
@@ -12,21 +11,13 @@ function Pagination({
   setCurrentPage,
   totalPages,
 }: PaginationProps) {
-  const [width, setWidth] = useState(window.innerWidth);
-  const updateDimensions = () => setWidth(window.innerWidth);
-
-  useEffect(() => {
-    window.addEventListener("resize", updateDimensions);
-    return () => window.removeEventListener("resize", updateDimensions);
-  }, []);
-
   return (
     <div>
       <style>
         {`
           @media (max-width: 768px) {
             .pagination {
-              font-size: 12px;
+              font-size: 8px;
             }
             .next, .prev {
               display: none;
@@ -34,7 +25,7 @@ function Pagination({
           }
           @media (min-width: 769px) {
             .pagination {
-              font-size: 14px;
+              font-size: 8px;
             }
           }
         `}

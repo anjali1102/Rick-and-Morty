@@ -15,7 +15,6 @@ export function useFavourites() {
   useEffect(() => {
     try {
       localStorage.setItem("fav-items", JSON.stringify(fav));
-      console.log("running", fav);
     } catch (error) {
       console.error("Failed to save favorites to local storage", error);
     }
