@@ -33,7 +33,7 @@ function Home() {
     <div>
       <Navbar />
       <Search setSearch={setSearch} setCurrentPage={setCurrentPage} />
-      <div className="flex gap-12">
+      <div className="main-content">
         <Filter
           statusFilter={statusFilter}
           setStatusFilter={setStatusFilter}
