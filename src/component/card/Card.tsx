@@ -9,6 +9,8 @@ type CardProps = {
   isFav: boolean;
   toggleFav: (character: Character) => void;
   character: Character;
+  status?: string;
+  species?: string;
 };
 
 function Card({ id, image, name, isFav, toggleFav, character }: CardProps) {
@@ -28,16 +30,16 @@ function Card({ id, image, name, isFav, toggleFav, character }: CardProps) {
         <img src={image} alt={image} className="rounded-xl" />
       </figure>
       <div className="card-body items-center text-center">
-        <h2 className="card-title">{name}</h2>
-        <p>
-          A card component has a figure, a body part, and inside body there are
-          title and actions parts
-        </p>
+        <h1 className="card-title">{name}</h1>
+        <div className="flex justify-between gap-4">
+          <div className="badge badge-ghost">{character?.status}</div>
+          <div className="badge badge-ghost">{character?.species}</div>
+        </div>
         <div className="card-actions">
-          <button className="btn btn-primary" onClick={handleExplore}>
-            Explore
-          </button>
-          <button className="btn" onClick={handleToggle}>
+          <button
+            className="btn border-none bg-transparent"
+            onClick={handleToggle}
+          >
             <Heart
               className={
                 isFav
@@ -45,6 +47,9 @@ function Card({ id, image, name, isFav, toggleFav, character }: CardProps) {
                   : "fill-white text-shadow-gray-400"
               }
             />
+          </button>
+          <button className="btn btn-primary" onClick={handleExplore}>
+            Explore
           </button>
         </div>
       </div>

@@ -1,3 +1,8 @@
+export type LocationType = {
+  name: string;
+  url: string;
+};
+
 export type Character = {
   id: number;
   image: string;
@@ -5,4 +10,6 @@ export type Character = {
   status: string;
   species: string;
   gender: string;
+  origin: LocationType;
+  location: LocationType;
 };

@@ -4,6 +4,7 @@ import type { Character } from "../types/character";
 export function useGetApi() {
   const [getCharacters, setgetCharacters] = useState<Character[] | null>(null);
   const [totalPages, setTotalPages] = useState(0);
+  const [singleCharacter, setSingleCharacter] = useState([]);
 
   const getCharacterList = (pageNumber: number) =>
     fetch(`https://rickandmortyapi.com/api/character/?page=${pageNumber}`)
@@ -11,6 +12,16 @@ export function useGetApi() {
       .then((res) => {
         setgetCharacters(res.results);
         setTotalPages(res.info.pages);
+      });
+
+  const getCharacterBySingleCharacter = (id: number) =>
+    fetch(`https://rickandmortyapi.com/api/character/${id}`)
+      .then((data) => data.json())
+      .then((res) => setSingleCharacter(res.results))
+      .catch((error) => {
+        setTotalPages(0);
+        setgetCharacters([]);
+        console.error("Error fetching character Details:", error);
       });
 
   const getCharacterByFilter = (
@@ -52,6 +63,8 @@ export function useGetApi() {
     setgetCharacters,
     totalPages,
     getCharacterList,
+    singleCharacter,
+    getCharacterBySingleCharacter,
     getCharacterByFilter,
   };
 }

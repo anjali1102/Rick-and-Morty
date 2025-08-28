@@ -72,6 +72,8 @@ function CharacterList({
           isFav={isFav(character.id)}
           toggleFav={toggleFav}
           character={character}
+          status={character.status}
+          species={character.species}
         />
       ))}
     </div>
