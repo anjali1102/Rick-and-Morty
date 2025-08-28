@@ -10,6 +10,8 @@ interface SpeciesCategory {
   specie: string;
 }
 
+type SortOrderType = "" | "asc" | "desc";
+
 interface FilterProps {
   statusFilter: string;
   setStatusFilter: (status: string) => void;
@@ -17,8 +19,8 @@ interface FilterProps {
   setSpeciesFilter: (specie: string) => void;
   showFavOnly: boolean;
   setShowFavOnly: (value: boolean) => void;
-  sortOrder: string;
-  setSortOrder: (order: string) => void;
+  sortOrder: SortOrderType;
+  setSortOrder: (order: SortOrderType) => void;
   setCurrentPage: (page: number) => void;
 }
 

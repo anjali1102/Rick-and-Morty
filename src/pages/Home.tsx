@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import Search from "../component/search/Search";
 import { useFavourites } from "../hooks/useFavourites";
 
+type SortOrderType = "" | "asc" | "desc";
+
 function Home() {
   const { getCharacters, getCharacterList, getCharacterByFilter, totalPages } =
     useGetApi();
@@ -16,7 +18,7 @@ function Home() {
   const [statusFilter, setStatusFilter] = useState<string>("");
   const [speciesFilter, setSpeciesFilter] = useState<string>("");
   const [showFavOnly, setShowFavOnly] = useState<boolean>(false);
-  const [sortOrder, setSortOrder] = useState<string>("");
+  const [sortOrder, setSortOrder] = useState<SortOrderType>("");
 
   useEffect(() => {
     if (showFavOnly) return;
