@@ -54,13 +54,15 @@ function Home() {
           fav={fav}
         />
       </div>
-      <div>
-        <Pagination
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          totalPages={totalPages}
-        />
-      </div>
+      {!showFavOnly && (
+        <div>
+          <Pagination
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            totalPages={totalPages}
+          />
+        </div>
+      )}
     </div>
   );
 }

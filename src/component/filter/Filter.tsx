@@ -76,6 +76,13 @@ function Filter({
     setSortOrder(sortOrder === "desc" ? "" : "desc");
   }
 
+  function clearFilters() {
+    setStatusFilter("");
+    setSpeciesFilter("");
+    setShowFavOnly(false);
+    setSortOrder("");
+  }
+
   return (
     <div className="flex flex-col bg-base-200 px-8 w-100 p-4 mx-12">
       <div className="flex flex-col space-y-4 p-4">
@@ -90,6 +97,7 @@ function Filter({
                   type="checkbox"
                   checked={statusFilter === status}
                   onChange={() => handleStatusChange(status)}
+                  disabled={showFavOnly}
                 />
                 {status}
               </div>
@@ -108,6 +116,7 @@ function Filter({
                   type="checkbox"
                   checked={speciesFilter === specie}
                   onChange={() => handleSpeciesChange(specie)}
+                  disabled={showFavOnly}
                 />
                 {specie}
               </div>
@@ -117,7 +126,7 @@ function Filter({
 
         <div className="favourite">
           <label htmlFor="favourite" id="favourite" className="font-semibold">
-            Favourite
+            Favourites Only
           </label>
           <div className="flex gap-2">
             <input
@@ -125,7 +134,7 @@ function Filter({
               checked={showFavOnly}
               onChange={handleFavChange}
             />
-            Favourite
+            Favourite Only
           </div>
         </div>
 
@@ -150,7 +159,10 @@ function Filter({
             Descending
           </div>
         </div>
-        <button className="bg-red-400 text-white p-2 rounded">
+        <button
+          className="bg-red-400 text-white p-2 rounded"
+          onClick={clearFilters}
+        >
           Clear Filters
         </button>
       </div>
